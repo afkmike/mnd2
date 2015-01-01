@@ -1,0 +1,30 @@
+.OESK_XBody_Default{width:900px;margin:8px auto 15px}
+.OESK_XBody_Default .OESZ_XBodyContent{width:100%;height:550px}
+.OESK_XBody_Default .OESZ_XBodyFooter{width:100%;height:50px}
+.OESK_WEText_Default{width:350px;height:80px}
+.OESK_WETextBox2_Default{width:275px;height:auto;padding:0 4px 0 0}
+.OESK_WETextBox2_Default .OESZ_TextBox{width:100%}
+.OESK_WETextBox2_Default .OESZ_TextBoxError{width:16px;height:16px;background-image:url(WEFiles/Image/Skin/26c70838.png);margin:0 0 0 4px}
+.OESK_WETextBox2_Default .OESZ_Validator{width:16px;height:16px;background-repeat:no-repeat;background-position:center center;background-image:url(WEFiles/Image/Skin/58294202.png);margin:0 0 0 4px}
+.OESK_WETextArea2_Default{width:275px;height:91px;padding:0 4px 4px 0}
+.OESK_WETextArea2_Default .OESZ_TextArea{width:100%;height:100%}
+.OESK_WETextArea2_Default .OESZ_TextAreaError{background-image:url(WEFiles/Image/Skin/cbb1ae94.png)}
+.OESK_WETextArea2_Default .OESZ_Validator{width:16px;height:16px;background-repeat:no-repeat;background-image:url(WEFiles/Image/Skin/966687aa.png);margin:0 0 0 4px}
+#XBody{height:auto}
+#XBody .OESZ_XBodyContent{height:1019px}
+#WE5b8844c927{position:absolute;left:30px;top:160px;width:850px;height:230px}
+#WEbd43f1999b{position:absolute;left:60px;top:180px;width:830px;height:220px}
+#WE88f2744109{position:absolute;left:100px;top:200px;width:710px;height:auto;color:#FFF;font-size:20px;font-family:Arial, Helvetica, sans-serif}
+#WE4420344db8{position:absolute;left:240px;top:400px;width:180px;height:75px}
+#WEf46f272cfc{position:absolute;left:240px;top:470px;width:180px;height:75px}
+#WE4512c47b44{position:absolute;left:240px;top:540px;width:180px;height:75px}
+#WE9bd5cee6ab{position:absolute;left:230px;top:610px;width:180px;height:75px}
+#WEd0551f7213{position:absolute;left:370px;top:440px;width:275px;height:auto}
+#WEaf1bc96b63{position:absolute;left:370px;top:510px;width:275px;height:auto}
+#WE9a4b0031d0{position:absolute;left:370px;top:580px;width:275px;height:auto}
+#WE41e5c7cc8f{position:absolute;left:370px;top:650px;width:456px;height:246px}
+#WE9def4af564{position:absolute;left:380px;top:910px;width:157px;height:99px}
+#WEfeb8b270bd{position:absolute;left:730px;top:50px;width:180px;height:75px}
+#WE775b9269bd{position:absolute;left:410px;top:340px}
+#WE0abb664518{position:absolute;left:780px;top:980px}
+

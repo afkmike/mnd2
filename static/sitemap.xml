@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://nevadatestsite.x10host.com/</loc>
+    <lastmod>2014-12-31</lastmod>
+  </url>
+  <url oeid="80ddab8b-0921-4c99-a008-cfd4b3f90840" oelang="DEFAULT">
+    <loc>http://nevadatestsite.x10host.com/index.htm</loc>
+    <lastmod>2014-12-31</lastmod>
+  </url>
+  <url oeid="62ee3d3b-9184-471f-ae9a-6bb2c19f1520" oelang="DEFAULT">
+    <loc>http://nevadatestsite.x10host.com/gallery.htm</loc>
+    <lastmod>2014-12-31</lastmod>
+  </url>
+  <url oeid="5130ac78-304a-4753-994c-abff14a91c65" oelang="DEFAULT">
+    <loc>http://nevadatestsite.x10host.com/services.htm</loc>
+    <lastmod>2014-12-31</lastmod>
+  </url>
+  <url oeid="eb31072c-a4d1-4370-801e-fb083b2abedd" oelang="DEFAULT">
+    <loc>http://nevadatestsite.x10host.com/contact.htm</loc>
+    <lastmod>2014-12-31</lastmod>
+  </url>
+</urlset>

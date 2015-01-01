@@ -1,0 +1,27 @@
+.OESK_XBody_Default{width:900px;margin:8px auto 15px}
+.OESK_XBody_Default .OESZ_XBodyContent{width:100%;height:550px}
+.OESK_XBody_Default .OESZ_XBodyFooter{width:100%;height:50px}
+.OESK_WEGallery1_Default{width:770px;height:550px}
+.OESK_WEGallery1_Default .OESZ_SelectedFrame{border:1px solid Silver}
+.OESK_WEGallery1_Default .OESZ_NextPage{background-repeat:no-repeat;background-position:center left;background-image:url(WEFiles/Image/Skin/ed82b27a.png)}
+.OESK_WEGallery1_Default .OESZ_PreviousPage{background-repeat:no-repeat;background-position:center right;background-image:url(WEFiles/Image/Skin/ac3ab0a9.png)}
+.OESK_WEGallery1_Default .OESZ_BtnNext{width:0;height:0;background-color:#FF8080;border:0 none}
+.OESK_WEGallery1_Default .OESZ_BtnPrev{width:0;height:0;border:0 none;padding:0 3px 0 0}
+.OESK_WEText_Default{width:350px;height:80px}
+#XBody{height:auto}
+#XBody .OESZ_XBodyContent{height:642px}
+#WE720b194f64{position:absolute;left:40px;top:150px;width:360px;height:490px}
+#WE720b194f64 .OESZ_ImageFrame{height:411px}
+#WE720b194f64 .OESZ_Thumb{width:35px;height:35px}
+#WE720b194f64 .OESZ_Zoom{width:360px;height:411px}
+#WE720b194f64 .OESZ_Navigation-container{height:39px}
+#WE65a9e516bd{position:absolute;left:420px;top:160px;width:470px;height:200px}
+#WE5d1f199dcf{position:absolute;left:420px;top:420px;width:470px;height:200px}
+#WE5ffc242f07{position:absolute;left:450px;top:180px;width:447px;height:187px}
+#WE505c6e6228{position:absolute;left:450px;top:440px;width:447px;height:187px}
+#WE4047b9c1cf{position:absolute;left:480px;top:200px;width:370px;height:auto;color:#FFF;font-size:20px;font-family:Arial, Helvetica, sans-serif}
+#WEef614d17fb{position:absolute;left:480px;top:460px;width:370px;height:auto;color:#FFF;font-size:20px;font-family:Arial, Helvetica, sans-serif}
+#WE02cd90c14d{position:absolute;left:410px;top:50px;width:180px;height:75px}
+.OESK_WEGallery1_Default .OESZ_BtnPlay,.OESK_WEGallery1_Default .OESZ_BtnPause{border:0 none;height:0;width:0}
+#WE720b194f64 .OESZ_NextPage,#WE720b194f64 .OESZ_PreviousPage{height:35px}
+
