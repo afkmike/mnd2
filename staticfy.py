@@ -16,6 +16,11 @@ def fix_file(filename):     # give it the name of the file
 
     # TODO make a backup copy of the contents in case shit happens (priority)
 
+    copy_filename = "copyOf"+filename
+    f = open(copy_filename,'w')
+    f.write(file_contents)
+    f.close()
+
     new_contents = "{% load staticfiles %}\n" + file_contents
     file_contents = new_contents
 
