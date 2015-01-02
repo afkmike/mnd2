@@ -30,9 +30,11 @@ def fix_file(filename):     # give it the name of the file -- Takes a List
         src_found = 0               # holds index of current change or -1 for EOF
         href_found = 0              # holds index of current change or -1 for EOF
         done = 0                    # holds -1 when both src and href checks reach EOF
+        URL_OPEN = '\"{% url '
         LINK_OPEN = '\"{% static '
         LINK_CLOSE = ' %}\"'
         STATIC_LEN_OPEN = len(LINK_OPEN)+1
+        STATI_URL_OPEN = len(URL_OPEN)+1
         SRC_OFFSET = 4
         HREF_OFFSET = 5
         try:
@@ -43,6 +45,7 @@ def fix_file(filename):     # give it the name of the file -- Takes a List
                         src_found += SRC_OFFSET                             # position after =
                     else:
                         break
+                    
                     new_contents = file_contents[:src_found] + LINK_OPEN + file_contents[src_found:]  # append "{% static
                     file_contents = new_contents                            # retain new contents
                     quotes = file_contents.find("\"", (src_found + STATIC_LEN_OPEN))     # find the next available "
@@ -55,6 +58,7 @@ def fix_file(filename):     # give it the name of the file -- Takes a List
                         href_found += HREF_OFFSET                           # position after =
                     else:
                         break
+                    print file_contents[:href_found]
                     new_contents = file_contents[:href_found] + LINK_OPEN + file_contents[href_found:]  # append "{% static
                     file_contents = new_contents                            # retain new contents
                     quotes = file_contents.find("\"", (href_found + STATIC_LEN_OPEN))    # find the next available whitespace
@@ -81,7 +85,8 @@ def fix_file(filename):     # give it the name of the file -- Takes a List
 
 
 if __name__ == "__main__":
-    files = [                      # Add files to manage here
+
+    files = ["services.htm",            # Add files to manage here
 
     ]
     delete_list = []
