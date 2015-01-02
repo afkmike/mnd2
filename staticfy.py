@@ -76,7 +76,7 @@ def fix_file(filename):     # give it the name of the file -- Takes a List
             f.write(contents)
             f.close()
             c.close()
-            
+
     return delete_list
 
 
