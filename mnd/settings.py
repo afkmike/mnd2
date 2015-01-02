@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
@@ -20,7 +21,10 @@ STATIC_PATH = os.path.join(BASE_DIR, 'static')
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '62hw9n_8$6k)vayw=j!y0mi4roj-!@azhnvha0m)q@1=v1&_(h'
+p = os.path.join(sys.path[0], 'key.txt')
+f = open(p)
+SECRET_KEY = f.read().rstrip()
+f.close()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
