@@ -85,10 +85,13 @@ def fix_file(filename):     # give it the name of the file -- Takes a List
 
 
 if __name__ == "__main__":
+    if len(sys.argv) < 1:                   # check for command line args first
+        files = ["services.htm",            # Add files to manage here
 
-    files = ["services.htm",            # Add files to manage here
+        ]
+    else:
+        files = sys.argv
 
-    ]
     delete_list = []
     if files: # Make sure files is not empty
         delete_list = fix_file(files)

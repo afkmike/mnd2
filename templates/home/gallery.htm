@@ -6,13 +6,15 @@
 {% block active %}{% static "gallery.css" %}{% endblock %}
 {% block page_path %}gallery{% endblock %}
 {% block page_path2 %}gallery{% endblock %}
-<link rel="stylesheet" type="text/css" href="{% static "WEFiles/Css/WEGallery1-v1.css" %}" />
-<script type="text/javascript" src="{% static "WEFiles/Client/jQuery/1.10.2.js" %}"></script>
-<script type="text/javascript" src="{% static "WEFiles/Client/jQuery/migrate.js" %}"></script>
-<script type="text/javascript" src="{% static "WEFiles/Client/Common/oe.min.js" %}"></script>
-<script type="text/javascript" src="{% static "gallery(var).js" %}"></script>
-<script type="text/javascript" src="{% static "WEFiles/Client/WEGallery1-v1.js" %}"></script>
-<script type="text/javascript" src="{% static "WEFiles/Client/jquery.galleriffic-v1.js" %}"></script>
+{% block head_block %}
+    <link rel="stylesheet" type="text/css" href="{% static "WEFiles/Css/WEGallery1-v1.css" %}" />
+    <script type="text/javascript" src="{% static "WEFiles/Client/jQuery/1.10.2.js" %}"></script>
+    <script type="text/javascript" src="{% static "WEFiles/Client/jQuery/migrate.js" %}"></script>
+    <script type="text/javascript" src="{% static "WEFiles/Client/Common/oe.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "gallery(var).js" %}"></script>
+    <script type="text/javascript" src="{% static "WEFiles/Client/WEGallery1-v1.js" %}"></script>
+    <script type="text/javascript" src="{% static "WEFiles/Client/jquery.galleriffic-v1.js" %}"></script>
+{% endblock %}
 {% block body_content %}
     <div id="WEbe6c128b6d" class="BaseDiv RWidth OEWEHr OESK_WEHrLign_12b97c2f" style="z-index:1001">
         <div class="OESZ OESZ_DivContent OESZG_WEbe6c128b6d ">

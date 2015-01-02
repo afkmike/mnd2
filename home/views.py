@@ -17,4 +17,4 @@ def contact(request):
 
 
 def services(request):
-    return render(request,'home/contact.htm')
+    return render(request,'home/services.htm')
