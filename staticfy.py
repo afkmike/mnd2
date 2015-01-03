@@ -5,7 +5,9 @@ and enclose any href or src attributes inside
 {% static ... %}
 There is currently no catching mechanism for relative paths (ie:  ../Dir/file.txt )
 """
-import sys, os
+import sys, os, log_manager
+
+log = log_manager.log_manager("Log.txt")
 
 def get_contents(filename):
     """######################################################################################
@@ -27,7 +29,8 @@ def make_backup(contents, name):
     ######################################################################################"""
     copy_filename = "copyOf" + name
     make_new_file(contents, copy_filename)
-        # TODO return true if backup made or false to throw
+    log.log.info("Made backup copy of " + name + " named " + copy_filename)
+        # TODO throw if backup fails
 
 def extend_base(contents):
     """######################################################################################
@@ -41,10 +44,10 @@ def extend_base(contents):
     EXTENDS_BASE_TAG = '{% extends \"base.html\" %}'
     EXTENDS_BASE_INDEX = contents.find(EXTENDS_BASE_TAG)
     if EXTENDS_BASE_INDEX > 0:
-        print "EXTENDS BASE.HTML TAG EXISTS"
+        log.log.info("Extends tag found prior to insert. Process aborted.")
         return contents
     else:
-        print "EXTENDS BASE.HTML TAG WILL BE INSERTED"
+        log.log.info("Extends base.html tag was inserted")
         AFTER_DOCTYPE = contents.find(">")+1  # safe enchant to +3   o.0
         new_contents = contents[:AFTER_DOCTYPE] + "\n" + EXTENDS_BASE_TAG + "\n" + contents[AFTER_DOCTYPE:]
         return new_contents
@@ -62,15 +65,14 @@ def load_staticfiles(contents):
         print "LOAD STATICFILES TAG EXISTS"
         return contents
     else:
-        print "LOAD STATICFILES TAG WILL BE INSERTED"
         EXTENDS_BASE_TAG = "{% extends \"base.html\" %}"
         EXTENDS_BASE_INDEX = contents.find(EXTENDS_BASE_TAG)
         if EXTENDS_BASE_INDEX > 0:
-            print "INSERTING AFTER FOUND EXTENDS BASE.HTML TAG"
+            log.log.info("Load staticfiles tag inserted after extends base.html tag")
             EXTENDS_BASE_INDEX += len(EXTENDS_BASE_TAG)+1
             new_contents = contents[:EXTENDS_BASE_INDEX] + "\n" + LOAD_SF_TAG + "\n" + contents[EXTENDS_BASE_INDEX:]
         else:
-            print "INSERTING AFTER DOCTYPE"
+            log.log.info("Load staticfiles tag inserted after DOCTYPE tag")
             AFTER_DOCTYPE = contents.find(">")+1
             new_contents = contents[:AFTER_DOCTYPE] + "\n" + LOAD_SF_TAG + "\n" + contents[AFTER_DOCTYPE:]
         return new_contents
@@ -98,7 +100,7 @@ def staticfy_resource(contents, res_type):
             break
         ALREADY_LINKED = contents.find(STATIC_TAG_FRONT, RES_INDEX)
         if ALREADY_LINKED == -1:
-            print "RESOURCE OF TYPE: " + res_type + " FOUND! STATICFYING!"
+            log.log.info("Resource of type: " + res_type + " FOUND! STATICFYING!")
             new_contents = contents[:RES_INDEX] + STATIC_TAG_FRONT + contents[RES_INDEX:]
             contents = new_contents
             quotes = contents.find("\"", (RES_INDEX+STATIC_FRONT_LEN))
@@ -107,14 +109,34 @@ def staticfy_resource(contents, res_type):
             contents = new_contents
         else:
             break
-    print "ALL RESOURCES ARE STATICFIED!"
+    log.log.info("ALL RESOURCES ARE STATICFIED!")
     return contents
 
-def url_conf(contents):  # TODO something
-    # locate href attributes holding a url
-    # trim extension
-    # enclose in {% url ... %}
-    # log each change in a txt file to confirm link naming is accurate
+def url_conf(contents):
+    """######################################################################################
+    # designed to match all hyperlinks to their django url configuration                    #
+    # ###USAGE: this function can be "independently" called by process() or any flow control#
+    ######################################################################################"""
+    link_index = 0
+    bracket_index = 0
+    ANCHOR_TAG = '<a'
+    ATTRIBUTE = 'href='
+    OFFSET_1 = len('href="{% ')             # pos to add 'url'
+    OFFSET_2 = len('href="{% static "')     # pos to put trimmed url
+    while link_index != -1:
+        link_index = contents.find(ANCHOR_TAG, bracket_index)
+        if link_index == -1:
+            break
+        else:
+            ATTRIBUTE_INDEX = contents.find(ATTRIBUTE, link_index)
+            DOT_INDEX = contents.find('.', (ATTRIBUTE_INDEX + OFFSET_2))
+            bracket_index = contents.find('}', DOT_INDEX)
+            URL_FRONT = ATTRIBUTE_INDEX + OFFSET_2
+            URL = contents[URL_FRONT: DOT_INDEX]
+            log.log.info("Url revised : " + URL)
+            NEW_LINK = 'url \"' + URL + '\" %'
+            new_contents = contents[:(ATTRIBUTE_INDEX+OFFSET_1)] + NEW_LINK + contents[bracket_index:]
+            contents = new_contents
     return contents
 
 def default_blocks(contents):
@@ -140,6 +162,7 @@ def default_blocks(contents):
         HEAD_BACK = HEAD_FRONT + len(HEAD_TAG)
         new_contents = contents[:HEAD_FRONT] + HEAD_BLOCK_OPEN + contents[HEAD_BACK:]
         contents = new_contents
+        log.log.info("Head block inserted")
 
     HEAD_CLOSE_TAG = '</head>'
     HEAD_CLOSE_FRONT = contents.find(HEAD_CLOSE_TAG)
@@ -147,6 +170,7 @@ def default_blocks(contents):
         HEAD_CLOSE_BACK = HEAD_CLOSE_FRONT + len(HEAD_CLOSE_TAG)
         new_contents = contents[:HEAD_CLOSE_FRONT] + BLOCK_CLOSE + contents[HEAD_CLOSE_BACK:]
         contents = new_contents
+        log.log.info("Head block close inserted")
 
     BODY_TAG = '<body>'
     BODY_FRONT = contents.find(BODY_TAG)
@@ -154,6 +178,7 @@ def default_blocks(contents):
         BODY_BACK = BODY_FRONT + len(BODY_TAG)
         new_contents = contents[:BODY_FRONT] + BODY_BLOCK_OPEN + contents[BODY_BACK:]
         contents = new_contents
+        log.log.info("Body block inserted")
 
     BODY_CLOSE_TAG = '</body>'
     BODY_CLOSE_FRONT = contents.find(BODY_CLOSE_TAG)
@@ -161,6 +186,7 @@ def default_blocks(contents):
         BODY_CLOSE_BACK = BODY_CLOSE_FRONT + len(BODY_CLOSE_TAG)
         new_contents = contents[:BODY_CLOSE_FRONT] + BLOCK_CLOSE + contents[BODY_CLOSE_BACK:]
         contents = new_contents
+        log.log.info("Body block close inserted")
 
     return contents
 
@@ -172,6 +198,7 @@ def make_new_file(contents, name):
     f = open(name, 'w')     # create/open the file in write mode
     f.write(contents)       # write/overwrite it
     f.close()               # save it
+    log.log.info("File saved: " + name)
 
 def process(a_file, mode):
     """######################################################################################
