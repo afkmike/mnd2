@@ -1,9 +1,7 @@
 """
-fix_file will add
-{% load staticfiles %} to the top line
-and enclose any href or src attributes inside
-{% static ... %}
-There is currently no catching mechanism for relative paths (ie:  ../Dir/file.txt )
+STATICFY is a django integration script for new html files
+Owned by afkconcepts
+author : mike
 """
 import sys, os, log_manager
 
@@ -39,8 +37,6 @@ def extend_base(contents):
     #           HOWEVER it will be called by default_blocks() to ensure inheritance applies #
     #           to the given file                                                           #
     ######################################################################################"""
-    # check for {% extends "base.html" %}
-    # insert \n{% extends "base.html" %}\n after doctype if not exists
     EXTENDS_BASE_TAG = '{% extends \"base.html\" %}'
     EXTENDS_BASE_INDEX = contents.find(EXTENDS_BASE_TAG)
     if EXTENDS_BASE_INDEX > 0:
@@ -84,6 +80,7 @@ def staticfy_resource(contents, res_type):
     #  generalized to require you pass the resource type (ie. src=, href= (REMEMBER = !))   #
     # ###USAGE: Don't forget the = or it won't work right!                                  #
     ######################################################################################"""
+    # TODO There is currently no catching mechanism for relative paths (ie:  ../Dir/file.txt )
     contents = load_staticfiles(contents)
 
     RES_INDEX = 0
@@ -117,6 +114,7 @@ def url_conf(contents):
     # designed to match all hyperlinks to their django url configuration                    #
     # ###USAGE: this function can be "independently" called by process() or any flow control#
     ######################################################################################"""
+    # TODO There is currently no catching mechanism for relative paths (ie:  ../Dir/file.txt )
     link_index = 0
     bracket_index = 0
     ANCHOR_TAG = '<a'
@@ -146,10 +144,6 @@ def default_blocks(contents):
     #  could probably automate to make less redundant, but must remain scalable             #
     # ###USAGE: Don't call twice until catches are added!                                   #
     ######################################################################################"""
-    # find {% block head_block %} replace with {% block head_block %}
-    # find {% endblock %} replace with {% endblock %}
-    # find {% block body_content %} replace with {% block body_content %}
-    # find {% endblock %} replace with {% endblock %}
     contents = extend_base(contents)
 
     HEAD_BLOCK_OPEN = '{% block head_block %}'
